@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: Gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: AUTH-SERVICE
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth/**, /customer/**
+
+        - id: TRANSACTION-SERVICE
+          uri: lb://TRANSACTION-SERVICE
+          predicates:
+              - Path=/transaction/**
+          filters:
+            - name: AuthenticationFilter
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone : http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+server:
+  port: 8080
+
+my:
+  secret:
+    key: IbF4ZFKW81ak4lW7xai8hbtwZf1Mpxyj

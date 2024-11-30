@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: TRANSACTION-SERVICE
+  datasource:
+    url: jdbc:postgresql://localhost:5432/transaction
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+server:
+  port: 8082
+
+my:
+  secret:
+    key: IbF4ZFKW81ak4lW7xai8hbtwZf1Mpxyj
